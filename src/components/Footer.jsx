@@ -1,42 +1,17 @@
-import './Footer.css';
+import { Link } from "react-router-dom";
 
-function Footer({
-  storeName = 'ComponentCorner',
-  tagline = 'Good tech for real life.',
-  email = 'hello@componentcorner.example',
-  year = new Date().getFullYear(),
-}) {
+export default function Footer() {
   return (
-    <footer className="site-footer" id="contact">
+    <footer className="site-footer">
       <div className="footer-main">
-        <div className="footer-brand-block">
-          <a className="footer-brand" href="#top"><span className="brand-mark" aria-hidden="true">c.</span>{storeName}</a>
-          <p>{tagline} Thoughtful picks, friendly service, and less scrolling for the good stuff.</p>
-        </div>
-        <div className="footer-column" id="why-us">
-          <h3>Explore</h3>
-          <a href="#shop">Shop all</a>
-          <a href="#shop">Best sellers</a>
-          <a href="#top">Our story</a>
-        </div>
-        <div className="footer-column">
-          <h3>We're here to help</h3>
-          <a href={`mailto:${email}`}>Email us</a>
-          <a href={`mailto:${email}?subject=Shipping%20question`}>Shipping questions</a>
-          <a href={`mailto:${email}?subject=Returns%20question`}>Returns & exchanges</a>
-        </div>
-        <div className="footer-contact">
-          <span className="contact-label">SAY HELLO</span>
-          <a href={`mailto:${email}`}>{email}</a>
-          <p>Good conversations start here.</p>
-        </div>
+        <Link to="/" className="brand footer-brand"><span className="brand-mark">c.</span><span>component<span className="brand-light">corner</span></span></Link>
+        <p>Good tools make room for great ideas.</p>
+        <Link to="/products" className="footer-link">Explore the collection ↗</Link>
       </div>
       <div className="footer-bottom">
-        <span>© {year} {storeName}. All rights reserved.</span>
-        <span>Made for the curious <span className="footer-heart">♥</span></span>
+        <span>© {new Date().getFullYear()} ComponentCorner</span>
+        <span>Thoughtfully selected. Made for everyday.</span>
       </div>
     </footer>
   );
 }
-
-export default Footer;

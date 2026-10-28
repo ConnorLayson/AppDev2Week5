@@ -1,29 +1,23 @@
-import './ProductCard.css';
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Plus, Star } from "lucide-react";
+import { formatPrice } from "../data/products.js";
 
-function ProductCard({ name, price, image, description, tag = 'FEATURED', rating = '4.8' }) {
+export default function ProductCard({ product, addToCart }) {
   return (
     <article className="product-card">
-      <div className="product-image-wrap">
-        <img className="product-image" src={image} alt={name} loading="lazy" />
-        <span className="product-tag">{tag}</span>
-        <span className="product-rating" aria-label={`Rated ${rating} out of 5`}>★ {rating}</span>
-      </div>
+      <Link to={`/products/${product.id}`} className="product-image-wrap" aria-label={`View ${product.name}`}>
+        <img className="product-image" src={product.image} alt={product.name} loading="lazy" />
+        {product.tag && <span className="product-tag">{product.tag}</span>}
+        <span className="image-arrow"><ArrowUpRight size={18} /></span>
+      </Link>
       <div className="product-info">
-        <div className="product-title-row">
-          <h3>{name}</h3>
-          <span className="product-price">${Number(price).toFixed(2)}</span>
+        <div className="product-meta"><span>{product.category}</span><span className="rating"><Star size={12} fill="currentColor" /> {product.rating}</span></div>
+        <Link to={`/products/${product.id}`} className="product-name">{product.name}</Link>
+        <div className="product-bottom">
+          <span className="product-price">{formatPrice(product.price)}</span>
+          <button className="quick-add" onClick={() => addToCart(product)} aria-label={`Add ${product.name} to cart`}><Plus size={17} /><span>Add</span></button>
         </div>
-        <p>{description}</p>
-        <button className="add-to-bag" type="button" onClick={(event) => {
-          const button = event.currentTarget;
-          button.textContent = 'Added ✓';
-          button.classList.add('is-added');
-        }}>
-          Add to bag <span aria-hidden="true">+</span>
-        </button>
       </div>
     </article>
   );
 }
-
-export default ProductCard;

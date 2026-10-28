@@ -1,6 +1,6 @@
 # ComponentCorner
 
-A responsive React storefront built with Vite. The project demonstrates reusable components, props, and component-specific CSS.
+A React single-page storefront demonstrating React Router, product detail routes, shared cart state, and `localStorage` persistence.
 
 ## Run locally
 
@@ -9,21 +9,21 @@ npm install
 npm run dev
 ```
 
-## Build for production
+Create a production build with `npm run build`.
 
-```bash
-npm run build
-```
+## Routes
 
-## Components
+- `/` — Home
+- `/products` — Product catalogue
+- `/products/:id` — Product details
+- `/cart` — Shopping cart
 
-- `Header.jsx` — store name and navigation
-- `Hero.jsx` — promotional hero section
-- `ProductCard.jsx` — reusable product card driven by props
-- `Footer.jsx` — store details and contact information
+## How the cart works
 
-Each component has its own CSS file in `src/components/`.
+The cart state is kept in `src/App.jsx`, above the routed pages, so it remains available across navigation. Cart updates are saved to `localStorage` under the key `componentcorner-cart` and restored on the next load.
 
-## AI assistance disclosure
+## Project notes
 
-AI assistance was used to help draft and refine the CSS styling and responsive layout. Review and adapt the code before submitting it for coursework, in accordance with your instructor's AI-use policy.
+The product catalogue is demo data in `src/data/products.js`. Replace it with your Assignment 3 data if you need to preserve the exact products from your earlier project.
+
+**AI assistance attribution:** This starter implementation and styling were generated with assistance from OpenAI ChatGPT. Review, test, and adapt the code before submitting it for coursework.
